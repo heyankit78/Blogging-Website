@@ -5,6 +5,7 @@ import { sign ,verify} from 'hono/jwt';
 import { withAccelerate } from '@prisma/extension-accelerate';
 import { userRouter } from './routes/user';
 import { blogRouter } from './routes/blog';
+import { cors } from 'hono/cors'
 // import {user}
 
 // Create the main Hono app
@@ -14,7 +15,7 @@ const app = new Hono<{
     JWT_SECRET: string;
   };
 }>();
-
+app.use('/*', cors())
 app.route('api/v1/user',userRouter);
 app.route('api/v1/blog',blogRouter);
 // Middleware for JWT validation on blog routes

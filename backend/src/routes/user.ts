@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client/edge';
 import bcrypt from 'bcryptjs';  // Using bcryptjs for password hashing
 import { sign ,verify} from 'hono/jwt';
 import { withAccelerate } from '@prisma/extension-accelerate';
-import { signupInput } from "@heyankit/medium-common-module";
+import { signupInput,signinInput } from "@100xdevs/medium-common";
 
 
 export const userRouter = new Hono<{
@@ -66,7 +66,13 @@ userRouter.post('/signup', async (c) => {
     }).$extends(withAccelerate());
   
     const body = await c.req.json();
-  
+    const { success } = signinInput.safeParse(body);
+    if (!success) {
+        c.status(411);
+        return c.json({
+            message: "Invalid inputs"
+        });
+    }
     // Find the user by email
     const existingUser = await prisma.user.findUnique({
       where: {

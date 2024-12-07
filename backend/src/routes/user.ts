@@ -22,12 +22,12 @@ userRouter.post('/signup', async (c) => {
   
     const body = await c.req.json();
     const {success} = signupInput.safeParse(body);
-    if(!success){
-        c.status(411);
-        return c.json({
-            message : "Invalid inputs"
-        })
-    }
+    // if(!success){
+    //     c.status(411);
+    //     return c.json({
+    //         message : "Invalid inputs"
+    //     })
+    // }
     // Check if user already exists by email
     const existingUser = await prisma.user.findUnique({
       where: {
@@ -66,13 +66,13 @@ userRouter.post('/signup', async (c) => {
     }).$extends(withAccelerate());
   
     const body = await c.req.json();
-    const { success } = signinInput.safeParse(body);
-    if (!success) {
-        c.status(411);
-        return c.json({
-            message: "Invalid inputs"
-        });
-    }
+    // const { success } = signinInput.safeParse(body);
+    // if (!success) {
+    //     c.status(411);
+    //     return c.json({
+    //         message: "Invalid inputs"
+    //     });
+    // }
     // Find the user by email
     const existingUser = await prisma.user.findUnique({
       where: {

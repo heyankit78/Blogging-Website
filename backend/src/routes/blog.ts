@@ -46,7 +46,19 @@ export const blogRouter = new Hono<{
         datasourceUrl: c.env.DATABASE_URL,
       }).$extends(withAccelerate());
     
-      const blog = await prisma.post.findMany({});
+      const blog = await prisma.post.findMany({
+        select:{
+          content:true,
+          title:true,
+          id : true,
+          authorId:true,
+          author :{
+            select:{
+              name:true
+            }
+          }
+        }
+      });
       return c.json({blog});
   })
 
@@ -92,6 +104,17 @@ export const blogRouter = new Hono<{
     const blog = await prisma.post.findUnique({
         where:{
             id
+        },
+        select:{
+          content:true,
+          title:true,
+          id : true,
+          authorId:true,
+          author :{
+            select:{
+              name:true
+            }
+          }
         }
     })
     return c.json({
@@ -102,18 +125,25 @@ export const blogRouter = new Hono<{
   
   
   // Update an existing blog
-  blogRouter.put('/', async(c) => {
+  blogRouter.put('/update', async(c) => {
     console.log("i am into update");
+
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
       }).$extends(withAccelerate());
     
-   
+    
       const userId = c.get('userId');
       const body = await c.req.json();
-      const { success } = updateBlogInput.safeParse(body);
-      if (!success) {
-          c.status(411);
+      // const { success } = updateBlogInput.safeParse(body);
+      // if (!success) {
+      //     c.status(411);
+      //     return c.json({
+      //         message: "Invalid inputs"
+      //     });
+      // }
+      if(body.title == '' || body.content == ''){
+        c.status(411);
           return c.json({
               message: "Invalid inputs"
           });

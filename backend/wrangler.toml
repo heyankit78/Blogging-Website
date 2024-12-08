@@ -4,8 +4,8 @@ compatibility_date = "2024-11-25"
 
 # [vars] defines environment variables
 [vars]
-DATABASE_URL = "prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiODVmODllNGUtYTU5OS00MDIyLWJiMzAtNzQyZWQ1MTJjOGM1IiwidGVuYW50X2lkIjoiOWE2ZjZjYTM3ODlhNmE4M2M1ODEyMzkzNDIxZWFkMDY5NzVkZDJiOGVmZjkyYmFiN2NhMGMxYzlkYmViZjI3OSIsImludGVybmFsX3NlY3JldCI6ImZkODQ0YjU4LTNjNmItNDA4Ni05YWFjLWIzZDU2YzU5NjdkZiJ9.Gs3Byabu5pQrTmadFQubf2ew_tMKJRaAOSYQN52cpR8"
-JWT_SECRET = "your-secret-key"
+DATABASE_URL = ""
+JWT_SECRET = ""
 # Uncomment and configure these sections if needed
 # [[kv_namespaces]]
 # binding = "MY_KV_NAMESPACE"

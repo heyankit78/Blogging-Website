@@ -35,6 +35,7 @@ export const Blogs = () => {
                     title={blog.title}
                     content={blog.content}
                     id={blog.id}
+                    authorId={blog.authorId}
                     onBlogUpdate={refetch}
                     publishedDate="13 May 2024"/>
                 )}

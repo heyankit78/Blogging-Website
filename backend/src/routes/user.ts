@@ -55,6 +55,7 @@ userRouter.post('/signup', async (c) => {
     const token = await sign({ id: user.id }, c.env.JWT_SECRET);  
   
     return c.json({
+      loggedInAuthorId:user.id,
       name:body.name,
       jwt: token,
     });
@@ -96,6 +97,7 @@ userRouter.post('/signup', async (c) => {
     const token = await sign({ id: existingUser.id }, c.env.JWT_SECRET);
   
     return c.json({
+      loggedInAuthorId:existingUser.id,
       name:body.name,
       jwt: token
     });

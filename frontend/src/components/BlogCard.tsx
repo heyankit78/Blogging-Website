@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BACKEND_URL } from "../config";
 import axios from "axios";
@@ -9,6 +9,7 @@ interface BlogCardProps {
   content: string;
   publishedDate: string;
   id: string;
+  authorId:string,
   onBlogUpdate: (updatedBlog: { id: string; title: string; content: string }) => void;
 }
 
@@ -18,11 +19,22 @@ export const BlogCard = ({
   content,
   publishedDate,
   id,
+  authorId,
   onBlogUpdate
 }: BlogCardProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [postTitle, setPostTitle] = useState(title);
   const [postDescription, setPostDescription] = useState(content);
+  const [editable,setEditable] = useState(false);
+
+  const loggedInAuthorId = localStorage.getItem('loggedInAuthorId');
+
+  useEffect(()=>{
+    if(loggedInAuthorId == authorId){
+        setEditable(true);
+      }
+  },[loggedInAuthorId,authorId])
+ 
 
 
   const openModal = (e: React.MouseEvent) => {
@@ -71,6 +83,7 @@ export const BlogCard = ({
       <div className="pt-2 relative">
         <div className="border-b border-slate-200 mt-2 pb-4 w-screen max-w-screen-md cursor-pointer">
           {/* Update Icon */}
+          {editable ?
           <div className="absolute top-4 right-2" onClick={openModal}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -87,6 +100,7 @@ export const BlogCard = ({
               />
             </svg>
           </div>
+          :<div></div>}
           <div className="absolute top-4 right-10 cursor-pointer">
             <Link to={`/blog/${id}`}>
               <svg

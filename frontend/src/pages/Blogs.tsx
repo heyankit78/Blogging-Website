@@ -1,16 +1,21 @@
 import { Appbar } from "../components/Appbar"
 import { BlogCard } from "../components/BlogCard"
 import { LoadingComponent } from "../components/LoadingComponent";
-import { useBlogs } from "../hooks"
+import { useBlogs } from "../hooks";
+import { useLocation } from "react-router-dom";
 
 export const Blogs = () => {
    const {loading,blogs,refetch} = useBlogs();
+   const location = useLocation();
+
+   // Access the passed data (updatedName)
+   const updatedName = location.state?.updatedName;
 
    if(loading){
     return(
         <>
         <div>
-            <Appbar/>
+            <Appbar name={updatedName}/>
         </div>
         <div>
            <LoadingComponent/>
@@ -21,7 +26,7 @@ export const Blogs = () => {
     return(
         
         <div className="mx-40">
-        <Appbar/>
+        <Appbar name={updatedName}/>
             <div className="flex justify-center">
                 <div className="max-w-md lg:max-w-none">
                 {blogs.map(blog=>

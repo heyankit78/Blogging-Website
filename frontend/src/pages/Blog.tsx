@@ -4,8 +4,9 @@ import { FullBlog } from "../components/FullBlog";
 import { LoadingComponent } from "../components/LoadingComponent";
 
 export const Blog = () => {
-  const { id } = useParams<{ id: string }>(); // Declare the expected parameter structure
-  const { loading, blog } = useBlog(id);
+  const { id } = useParams<{ id: string }>();
+// Ensure `id` is not undefined before calling the hook
+  const { loading, blog } = useBlog({ id: id || "default-id" }); 
   if (loading) {
     return <div>
       <LoadingComponent/>

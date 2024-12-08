@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { BACKEND_URL } from "../config";
 import axios from "axios";
 
@@ -181,7 +181,7 @@ export const BlogCard = ({
           </label>
           <textarea
             id="description"
-            rows="12"
+            rows={12}
             value={postDescription}
             onChange={(e) => setPostDescription(e.target.value)}
             className="w-full p-2 mt-1 border rounded-md"
@@ -208,7 +208,7 @@ export const BlogCard = ({
   );
 };
 
-export const Avatar = ({ name, size = "small" }) => {
+export const Avatar = ({ name, size = "small" }:{name : string,size?:"small"| "big"}) => {
   return (
     <div
       className={`relative inline-flex items-center justify-center overflow-hidden bg-blue-200 rounded-full ${

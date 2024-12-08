@@ -66,11 +66,11 @@ export const Publish = () => {
 
           {/* Action Buttons */}
           <div className="flex justify-between items-center">
-            <button
+            {/* <button
               className="text-sm font-semibold text-gray-500 hover:text-gray-800 transition-all duration-300"
             >
               Save as Draft
-            </button>
+            </button> */}
             <button onClick={publishBlog}
               className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-md transition-all duration-300"
             >

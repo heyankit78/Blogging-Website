@@ -131,81 +131,79 @@ export const BlogCard = ({
         </div>
       </div>
 
-      {/* Modal */}
+
       {isModalOpen && (
-        <div
-          id="crud-modal"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+  <div
+    id="crud-modal"
+    className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+  >
+    <div className="relative bg-white rounded-lg shadow p-6 w-[40rem] max-h-[80vh] overflow-y-auto">
+      {/* Modal header */}
+      <div className="flex items-center justify-between p-4 border-b">
+        <h3 className="text-lg font-semibold">Edit Blog Post</h3>
+        <button
+          type="button"
+          className="text-gray-400 hover:bg-gray-200 rounded-full p-2"
+          onClick={closeModal}
         >
-          <div className="relative bg-white rounded-lg shadow p-6 w-96">
-            {/* Modal header */}
-            <div className="flex items-center justify-between p-4 border-b">
-              <h3 className="text-lg font-semibold">Edit Blog Post</h3>
-              <button
-                type="button"
-                className="text-gray-400 hover:bg-gray-200 rounded-full p-2"
-                onClick={closeModal}
-              >
-                <svg
-                  className="w-5 h-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            </div>
+          <svg
+            className="w-5 h-5"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="2"
+            stroke="currentColor"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
 
-            {/* Modal body */}
-            <form onSubmit={handleSubmit}>
-              <div className="mb-4">
-                <label htmlFor="title" className="block text-sm font-medium text-gray-700">
-                  Title
-                </label>
-                <input
-                  type="text"
-                  id="title"
-                  value={postTitle}
-                  onChange={(e) => setPostTitle(e.target.value)}
-                  className="w-full p-2 mt-1 border rounded-md"
-                  required
-                />
-              </div>
-
-              <div className="mb-4">
-                <label
-                  htmlFor="description"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Description
-                </label>
-                <textarea
-                  id="description"
-                  rows="4"
-                  value={postDescription}
-                  onChange={(e) => setPostDescription(e.target.value)}
-                  className="w-full p-2 mt-1 border rounded-md"
-                  required
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full py-2 text-white bg-blue-600 rounded-lg"
-              >
-                Save Changes
-              </button>
-            </form>
-          </div>
+      {/* Modal body */}
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <div className="mb-4">
+          <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+            Title
+          </label>
+          <input
+            type="text"
+            id="title"
+            value={postTitle}
+            onChange={(e) => setPostTitle(e.target.value)}
+            className="w-full p-2 mt-1 border rounded-md"
+            required
+          />
         </div>
-      )}
+
+        <div className="mb-4">
+          <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+            Description
+          </label>
+          <textarea
+            id="description"
+            rows="12"
+            value={postDescription}
+            onChange={(e) => setPostDescription(e.target.value)}
+            className="w-full p-2 mt-1 border rounded-md"
+            required
+          ></textarea>
+        </div>
+
+        {/* Footer Section */}
+        <div className="flex justify-end mt-4">
+          <button
+            type="submit"
+            className="py-2 px-4 text-white bg-blue-600 rounded-lg hover:bg-blue-700"
+          >
+            Save Changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+)}
+
+
     </div>
   );
 };

@@ -9,7 +9,7 @@ export const Blogs = () => {
    const location = useLocation();
 
    // Access the passed data (updatedName)
-   const updatedName = location.state?.updatedName;
+   const updatedName = location.state?.updatedName || localStorage.getItem("name");
 
    if(loading){
     return(
